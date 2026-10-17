@@ -80,7 +80,7 @@ import os
 #     m1.metric("Total Income", f"₹{monthly_income:,.2f}")
 #     m2.metric("Total Spent", f"₹{total_spent:,.2f}")
 #     m3.metric("Balance", f"₹{remaining:,.2f}")
-#     m4.metric("Savings Rate", f"{savings_rate:.1f}%")
+#     st.metric("Savings Rate", f"{savings_rate:.1f}%")
 # 
 #     st.divider()
 #     st.subheader("Category Breakdown")
@@ -89,11 +89,11 @@ import os
 # 
 #     st.subheader("Recent Expenses")
 #     st.dataframe(df.iloc[::-1], use_container_width=True)
-# else:
+ else:
 #     st.info("No expenses logged yet. Add your first transaction above!")
 
 response = requests.get("https://loca.lt/mytunnelpassword")
-st.print("--- Click the link below and paste the IP code above ---")
+st.write("--- Click the link below and paste the IP code above ---")
 
 # Fetch the endpoint IP address required by localtunnel to access the app
 import urllib.request
