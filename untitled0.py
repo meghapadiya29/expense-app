@@ -94,8 +94,7 @@ import os
 
 response = requests.get("https://loca.lt/mytunnelpassword")
 st.print("--- Click the link below and paste the IP code above ---")
-streamlit run app.py
-npx localtunnel --port 850
+streamlit run app.py npx localtunnel --port 850
 
 !pip install pyngrok
 
