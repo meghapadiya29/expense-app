@@ -89,7 +89,7 @@ import os
 # 
 #     st.subheader("Recent Expenses")
 #     st.dataframe(df.iloc[::-1], use_container_width=True)
- else:
+# else:
 #     st.info("No expenses logged yet. Add your first transaction above!")
 
 response = requests.get("https://loca.lt/mytunnelpassword")
