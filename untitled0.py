@@ -92,7 +92,7 @@ import os
 # else:
 #     st.info("No expenses logged yet. Add your first transaction above!")
 
-curl https://loca.lt/mytunnelpassword
+response = requests.get("https://loca.lt/mytunnelpassword")
 print("\n--- Click the link below and paste the IP code above: ---")
 !streamlit run app.py & npx localtunnel --port 8501
 
