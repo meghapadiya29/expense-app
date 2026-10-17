@@ -92,7 +92,7 @@ import os
 # else:
 #     st.info("No expenses logged yet. Add your first transaction above!")
 
-response = requests.get("https://loca.lt/mytunnelpassword")
+response =requests.get("https://loca.lt/mytunnelpassword")
 st.write("--- Click the link below and paste the IP code above ---")
 
 # Fetch the endpoint IP address required by localtunnel to access the app
