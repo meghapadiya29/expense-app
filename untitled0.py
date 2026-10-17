@@ -116,4 +116,4 @@ subprocess.Popen(["streamlit", "run", "app.py", "--server.port", "8501", "--serv
 time.sleep(3)
 
 # 3. Create a clean free public URL via Serveo (no password, no token needed)
-!ssh -o StrictHostKeyChecking=no -R 80:localhost:8501 serveo.net
+os.system("ssh -o StrictHostKeyChecking=no -R 80:localhost:8501 serveo.net")
