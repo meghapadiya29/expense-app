@@ -7,8 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/18gghGyArhYMGPfNZrnEST3wzS-cDO3gE
 """
 
-pip install streamlit pandas
-npm install localtunnel
+import streamlit as st
+import pandas as pd
+from datetime import date
+import os
 
 # Commented out IPython magic to ensure Python compatibility.
 # # 1. Write the app code to app.py
