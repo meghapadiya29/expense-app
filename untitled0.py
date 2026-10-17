@@ -109,7 +109,7 @@ import subprocess
 import time
 
 # 1. Kill any existing streamlit sessions
-!pkill -f streamlit
+os.system("pkill -f streamlit")
 
 # 2. Start Streamlit in the background
 subprocess.Popen(["streamlit", "run", "app.py", "--server.port", "8501", "--server.headless", "true"])
