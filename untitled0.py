@@ -93,7 +93,7 @@ import os
 #     st.info("No expenses logged yet. Add your first transaction above!")
 
 response = requests.get("https://loca.lt/mytunnelpassword")
-print("\n--- Click the link below and paste the IP code above:
+st.print("--- Click the link below and paste the IP code above ---")
 !streamlit run app.py & npx localtunnel --port 8501
 
 !pip install pyngrok
