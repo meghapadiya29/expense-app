@@ -102,7 +102,7 @@ print("\n👉 Copy the IP address printed above! You will need to paste it as th
 
 # Run Streamlit and expose it via localtunnel
 import os
-!pkill -f streamlit
+os.system("pkill -f streamlit")
 os.system("streamlit run app.py & npx localtunnel --port 8501")
 
 import subprocess
