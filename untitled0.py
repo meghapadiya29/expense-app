@@ -95,7 +95,7 @@ import os
 response = requests.get("https://loca.lt/mytunnelpassword")
 st.print("--- Click the link below and paste the IP code above ---")
 
-!pip install pyngrok
+pip install pyngrok
 
 # Fetch the endpoint IP address required by localtunnel to access the app
 curl -s https://loca.lt/mytunnelpassword
