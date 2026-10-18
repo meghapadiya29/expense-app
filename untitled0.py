@@ -93,7 +93,7 @@
 # print("\n--- Click the link below and paste the IP code above: ---")
 # !streamlit run app.py & npx localtunnel --port 8501
 
-!pip install pyngrok
+# !pip install pyngrok
 
 # Fetch the endpoint IP address required by localtunnel to access the app
 !curl -s https://loca.lt/mytunnelpassword
