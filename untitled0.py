@@ -7,7 +7,7 @@
 # https://colab.research.google.com/drive/18gghGyArhYMGPfNZrnEST3wzS-cDO3gE
 
 
-pip install streamlit pandas
+# pip install streamlit pandas
 
 # Commented out IPython magic to ensure Python compatibility.
 # # 1. Write the app code to app.py
