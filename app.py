@@ -1,0 +1,76 @@
+import streamlit as st
+import pandas as pd
+from datetime import date
+import os
+
+st.set_page_config(page_title="Personal Expense Tracker", page_icon="💳", layout="wide")
+
+DATA_FILE = "expenses.csv"
+
+if not os.path.exists(DATA_FILE):
+    df_init = pd.DataFrame(columns=["Date", "Item", "Category", "Amount"])
+    df_init.to_csv(DATA_FILE, index=False)
+
+def load_data():
+    df = pd.read_csv(DATA_FILE)
+    if not df.empty:
+        df["Date"] = pd.to_datetime(df["Date"]).dt.date
+        df["Amount"] = pd.to_numeric(df["Amount"])
+    return df
+
+def add_expense(exp_date, item, category, amount):
+    df = load_data()
+    new_entry = pd.DataFrame([{
+        "Date": exp_date,
+        "Item": item.strip().title(),
+        "Category": category,
+        "Amount": round(float(amount), 2)
+    }])
+    df = pd.concat([df, new_entry], ignore_index=True)
+    df.to_csv(DATA_FILE, index=False)
+
+st.title("💳 Personal Expense Tracker")
+st.caption("Track your daily spending right from your browser.")
+
+with st.sidebar:
+    st.header("⚙️ Budget Settings")
+    monthly_income = st.number_input("Monthly Income", min_value=0.0, value=50000.0, step=1000.0)
+
+with st.expander("➕ Log a New Expense", expanded=True):
+    with st.form("expense_form", clear_on_submit=True):
+        col1, col2, col3, col4 = st.columns([2, 3, 3, 2])
+        exp_date = col1.date_input("Date", value=date.today())
+        item = col2.text_input("Expense Description (e.g., Grocery run, Fuel)")
+        category = col3.selectbox("Category", [
+            "Housing & Rent", "Groceries & Food", "Utilities & Bills",
+            "Transport & Fuel", "Dining & Entertainment", "Healthcare & Personal", "Shopping & Misc"
+        ])
+        amount = col4.number_input("Amount", min_value=0.0, step=50.0)
+
+        submitted = st.form_submit_button("Record Expense", use_container_width=True)
+        if submitted and item.strip() and amount > 0:
+            add_expense(exp_date, item, category, amount)
+            st.success(f"Recorded ₹{amount:,.2f} for {item.title()}!")
+            st.rerun()
+
+df = load_data()
+if not df.empty:
+    total_spent = df["Amount"].sum()
+    remaining = monthly_income - total_spent
+    savings_rate = (remaining / monthly_income * 100) if monthly_income > 0 else 0
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Total Income", f"₹{monthly_income:,.2f}")
+    m2.metric("Total Spent", f"₹{total_spent:,.2f}")
+    m3.metric("Balance", f"₹{remaining:,.2f}")
+    m4.metric("Savings Rate", f"{savings_rate:.1f}%")
+
+    st.divider()
+    st.subheader("Category Breakdown")
+    cat_summary = df.groupby("Category")["Amount"].sum().reset_index()
+    st.bar_chart(data=cat_summary, x="Category", y="Amount")
+
+    st.subheader("Recent Expenses")
+    st.dataframe(df.iloc[::-1], use_container_width=True)
+else:
+    st.info("No expenses logged yet. Add your first transaction above!")
