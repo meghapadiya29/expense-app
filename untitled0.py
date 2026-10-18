@@ -96,7 +96,7 @@
 # !pip install pyngrok
 
 # Fetch the endpoint IP address required by localtunnel to access the app
-!curl -s https://loca.lt/mytunnelpassword
+# !curl -s https://loca.lt/mytunnelpassword
 print("\n👉 Copy the IP address printed above! You will need to paste it as the tunnel password to open the link below.\n")
 
 # Run Streamlit and expose it via localtunnel
